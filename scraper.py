@@ -7,7 +7,7 @@ def search(query):
     form["query"] = query
     response = requests.post(urls["search"], headers=headers, data=form)
     total = response.json()["pagination"]["total_count"]
-    print(f"Total found for query `{query}`: {total}")
+    # print(f"Total found for query `{query}`: {total}")
     return total, response.json()
 
 def get_all_sessions(date=None):
@@ -37,7 +37,7 @@ def get_processed_sessions():
     return total, approved, rejected
 
 def get_new_users(date):
-    search_date = datetime.strptime(date, "%Y-%m-%d")
+    search_date = datetime.strptime(date, "%Y-%m-%d") if isinstance(date, str) else date
     start_date = search_date - timedelta(days=1)
     end_date = search_date + timedelta(days=1)
     query = queries["new_users"]+queries["on_day"].format(start_date=start_date.strftime("%Y-%m-%d"), end_date=end_date.strftime("%Y-%m-%d"))

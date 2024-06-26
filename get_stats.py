@@ -1,4 +1,4 @@
-from scraper import search, get_all_sessions
+from scraper import search, get_all_sessions, get_new_users
 import json
 from datetime import datetime, timedelta
 
@@ -32,7 +32,24 @@ def get_tz_distribution():
             timezones_regions[region] = 1
     return timezones, timezones_regions
 
+def get_usernames():
+    usernames = [u["name"] if u["profile"]["display_name"] == "" else u["profile"]["display_name"] for u in users]
+    letters = {}
+    for username in usernames:
+        if username[0] in letters:
+            letters[username[0]] += 1
+        else:
+            letters[username[0]] = 1
+    return letters
+
+def get_tutorials_daily():
+    tutorials_daily = []
+    datetimes = [datetime(2024, 6, 17) + timedelta(days=i) for i in range((datetime.now()-datetime(2024, 6, 17)).days)]
+    for date in datetimes:
+        total = get_new_users(date)
+        tutorials_daily.append({"date": date.strftime("%Y-%m-%d"), "total": total})
+    return tutorials_daily
+
 if __name__ == "__main__":
     timezones, timezones_regions = get_tz_distribution()
-    print(timezones)
-    print(timezones_regions)
+    print(get_tz_distribution())
