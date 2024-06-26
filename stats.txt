@@ -1,0 +1,8 @@
+total users
+total sessions
+daily sessions
+finished/end early ratio
+approved/rejected ratio
+tz distribution
+first username letter distribution
+daily users doing tutorial
