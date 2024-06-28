@@ -1,4 +1,4 @@
-from scraper import search, get_all_sessions, get_new_users
+from scraper import search, get_all_sessions, get_new_users, get_processed_sessions
 import json
 from datetime import datetime, timedelta
 
@@ -36,10 +36,11 @@ def get_usernames():
     usernames = [u["name"] if u["profile"]["display_name"] == "" else u["profile"]["display_name"] for u in users]
     letters = {}
     for username in usernames:
-        if username[0] in letters:
-            letters[username[0]] += 1
+        if username[0].upper() in letters:
+            letters[username[0].upper()] += 1
         else:
-            letters[username[0]] = 1
+            letters[username[0].upper()] = 1
+    letters = letters.sorted()
     return letters
 
 def get_tutorials_daily():

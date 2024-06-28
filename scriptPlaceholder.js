@@ -1,3 +1,12 @@
+function generateRandomColors(length) {
+    const colors = [];
+    for (let i = 0; i < length; i++) {
+        colors.push("rgba(255, 255, 255, " + (((Math.random()*0.2)+0.8).toFixed(3)) + ")");
+    }
+    console.log(colors)
+    return colors;
+}
+
 const finished_ended_early_pie = document.getElementById('finished_ended_early_pie').getContext('2d');
 new Chart(finished_ended_early_pie, {
     type: 'pie',
@@ -5,10 +14,7 @@ new Chart(finished_ended_early_pie, {
         labels: [{{ labels_finished_ended_early }}],
         datasets: [{
             data: [{{ data_finished_ended_early }}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-            ],
+            backgroundColor: generateRandomColors([{{ labels_finished_ended_early }}].length),
             borderWidth: 2,
             borderSkipped: false,
         }]
@@ -30,10 +36,7 @@ new Chart(approved_rejected_pie, {
         labels: [{{ labels_approved_rejected }}],
         datasets: [{
             data: [{{ data_approved_rejected }}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-            ],
+            backgroundColor: generateRandomColors([{{ labels_approved_rejected }}].length),
             borderWidth: 2,
             borderSkipped: false,
         }]
@@ -55,10 +58,7 @@ new Chart(timezone_regions_pie, {
         labels: [{{ labels_timezone_regions }}],
         datasets: [{
             data: [{{ data_timezone_regions }}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-            ],
+            backgroundColor: generateRandomColors([{{ labels_timezone_regions }}].length),
             borderWidth: 2,
             borderSkipped: false,
         }]
@@ -80,10 +80,7 @@ new Chart(timezones_specific_pie, {
         labels: [{{ labels_timezones_specific }}],
         datasets: [{
             data: [{{ data_timezones_specific }}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-            ],
+            backgroundColor: generateRandomColors([{{ labels_timezones_specific }}].length),
             borderWidth: 2,
             borderSkipped: false,
         }]
@@ -105,10 +102,7 @@ new Chart(username_first_letters_pie, {
         labels: [{{ labels_username_first_letters }}],
         datasets: [{
             data: [{{ data_username_first_letters }}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-            ],
+            backgroundColor: generateRandomColors([{{ labels_username_first_letters }}].length),
             borderWidth: 2,
             borderSkipped: false,
         }]
@@ -130,20 +124,14 @@ new Chart(daily_sessions_bar, {
         labels: [{{ labels_daily_sessions }}],
         datasets: [{
             data: [{{ data_daily_sessions }}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(153, 102, 255, 0.8)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
+            backgroundColor: generateRandomColors([{{ labels_daily_sessions }}].length),
+            // borderColor: [
+            //     'rgba(255, 99, 132, 1)',
+            //     'rgba(54, 162, 235, 1)',
+            //     'rgba(255, 206, 86, 1)',
+            //     'rgba(75, 192, 192, 1)',
+            //     'rgba(153, 102, 255, 1)'
+            // ],
             borderWidth: 2
         }]
     },
@@ -170,21 +158,15 @@ new Chart(daily_tutorial_bar, {
         labels: [{{ labels_daily_tutorial }}],
         datasets: [{
             data: [{{ data_daily_tutorial }}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(153, 102, 255, 0.8)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 2
+            backgroundColor: generateRandomColors([{{ labels_daily_tutorial }}].length),
+            // borderColor: [
+            //     'rgba(255, 99, 132, 1)',
+            //     'rgba(54, 162, 235, 1)',
+            //     'rgba(255, 206, 86, 1)',
+            //     'rgba(75, 192, 192, 1)',
+            //     'rgba(153, 102, 255, 1)'
+            // ],
+            borderWidth: 2,
         }]
     },
     options: {

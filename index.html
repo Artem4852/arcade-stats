@@ -12,30 +12,30 @@
     <p>Important to note, the data is taken from Slack and might not be 100% accurate.</p>
     <div class="info">
         <h2>Total Users</h2>
-        <h3>There are about <span class="increment">{{ total_users }}</span> people participating in the Arcade project.</h3>
+        <h3>There are about <span class="increment">3536</span> people participating in the Arcade project.</h3>
     </div>
     <div class="info">
         <h2>Total Sessions</h2>
-        <h3>About <span class="increment">{{ total_sessions }}</span> sessions were started since the launch on 17th of June.</h3>
+        <h3>About <span class="increment">18130</span> sessions were started since the launch on 17th of June.</h3>
     </div>
     <div class="info">
         <h2>Daily Sessions</h2>
-        <h3>Every day, on average {{ daily_sessions_average }} sessions were started.</h3>
+        <h3>Every day, on average 1573.36 sessions were started.</h3>
         <canvas id="daily_sessions_bar" width="100%" height="400px"></canvas>
     </div>
     <div class="info">
         <h2>Finished/Ended early ratio</h2>
-        <h3>{{ finished_perc }}% were finished completely, {{ ended_early_perc }}% were finished early.</h3>
+        <h3>77.02% were finished completely, 22.98% were finished early.</h3>
         <canvas id="finished_ended_early_pie" width="400px" height="400px"></canvas>
     </div>
     <div class="info">
         <h2>Approved/rejected sessions ratio</h2>
-        <h3>{{ approved_perc }}% of sessions were finished approved, {{ rejected_perc }}% of sessions were rejected. Many others are still awaiting approval.</h3>
+        <h3>85.03% of sessions were finished approved, 14.97% of sessions were rejected. Many others are still awaiting approval.</h3>
         <canvas id="approved_rejected_pie" width="400px" height="400px"></canvas>
     </div>
     <div class="info">
         <h2>Timezone distribution</h2>
-        <h3>Users from all around the world participate. They use {{ timezone_num }} timezones from {{ timezone_region_num }} regions.</h3>
+        <h3>Users from all around the world participate. They use 64 timezones from 7 regions.</h3>
         <div>
             <canvas id="timezone_regions_pie" width="400px" height="400px"></canvas>
             <canvas id="timezones_specific_pie" width="400px" height="400px"></canvas>
@@ -43,12 +43,12 @@
     </div>
     <div class="info">
         <h2>Usernames</h2>
-        <h3>About {{ beginning_with_a_perc }}% of users have a username beginning with the letter A. Here are all the others:</h3>
+        <h3>About 13.57% of users have a username beginning with the letter A. Here are all the others:</h3>
         <canvas id="username_first_letters_pie" width="400px" height="400px"></canvas>
     </div>
     <div class="info">
         <h2>Newcomers</h2>
-        <h3>Every day, on average {{ daily_new_users_average }} users pass the tutorial.</h3>
+        <h3>Every day, on average 125.36 users pass the tutorial.</h3>
         <canvas id="daily_tutorial_bar" width="100%" height="400px"></canvas>
     </div>
     <script src="script.js"></script>
