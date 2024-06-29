@@ -13,7 +13,7 @@ def replace_variables(filename, variables):
         divider = '\', \''
         if ext == "js" and isinstance(value, list):
             try: 
-                int(value[0])
+                [int(v) for v in value]
                 value = ', '.join(value)
             except:
                 value = f"'{divider.join(value)}'"

@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "Slackey";
+  src: url("fonts/Slackey.ttf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 50px 20px;
+  background-color: #FAEFD6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  color: #FF8C37;
+  font-family: "Slackey", sans-serif;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  margin-top: -8px;
+  margin-bottom: 50px;
+  opacity: 0.8;
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 500px;
+  margin-bottom: 40px;
+}
+.info div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/*# sourceMappingURL=style.css.map */

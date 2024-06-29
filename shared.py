@@ -12,7 +12,7 @@ queries = {
     "end_early": "in:#arcade from:@hakkuun has::exit:",
     "approved": "in:#arcade from:@hakkuun \"approved\"",
     "rejected": "in:#arcade from:@hakkuun \"rejected\"",
-    "new_users": "in:#arcade from:@hakkuun the \"arcade tutorial\"",
+    "new_users": "from:@hakkuun \"welcome to your first\"",
     "on_day": " before:{end_date} after:{start_date}"
 }
 

@@ -1,190 +1,82 @@
 function generateRandomColors(length) {
     const colors = [];
     for (let i = 0; i < length; i++) {
-        colors.push("rgba(255, 255, 255, " + (((Math.random()*0.2)+0.8).toFixed(3)) + ")");
+        const color = `rgba(0, 0, 0, ${(((Math.random() * 0.2) + 0.8).toFixed(3))})`;
+        colors.push(color);
     }
     console.log(colors)
     return colors;
 }
 
-const finished_ended_early_pie = document.getElementById('finished_ended_early_pie').getContext('2d');
-new Chart(finished_ended_early_pie, {
-    type: 'pie',
-    data: {
-        labels: [{{ labels_finished_ended_early }}],
-        datasets: [{
-            data: [{{ data_finished_ended_early }}],
-            backgroundColor: generateRandomColors([{{ labels_finished_ended_early }}].length),
-            borderWidth: 2,
-            borderSkipped: false,
-        }]
-    },
-    options: {
-        responsive: true,
+function makeChart(ctx, type, labels, data) {
+    const isSmallScreen = window.innerWidth < 600;
+    
+    const options = {
+        responsive: false,
+        maintainAspectRatio: false,
         plugins: {
+            legend: {
+                display: type === 'pie',
+                position: type === 'pie' && !isSmallScreen ? 'left' : 'top',
+            },
             title: {
                 display: false,
             }
         }
-    }
-});
-
-const approved_rejected_pie = document.getElementById('approved_rejected_pie').getContext('2d');
-new Chart(approved_rejected_pie, {
-    type: 'pie',
-    data: {
-        labels: [{{ labels_approved_rejected }}],
-        datasets: [{
-            data: [{{ data_approved_rejected }}],
-            backgroundColor: generateRandomColors([{{ labels_approved_rejected }}].length),
-            borderWidth: 2,
-            borderSkipped: false,
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            title: {
-                display: false,
+    };
+    
+    if (type === 'pie' && type === 'pie' && !isSmallScreen) {
+        options.layout = {
+            padding: {
+                left: 100
             }
-        }
+        };
     }
-});
 
-const timezone_regions_pie = document.getElementById('timezone_regions_pie').getContext('2d');
-new Chart(timezone_regions_pie, {
-    type: 'pie',
-    data: {
-        labels: [{{ labels_timezone_regions }}],
-        datasets: [{
-            data: [{{ data_timezone_regions }}],
-            backgroundColor: generateRandomColors([{{ labels_timezone_regions }}].length),
-            borderWidth: 2,
-            borderSkipped: false,
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            title: {
-                display: false,
-            }
-        }
-    }
-});
-
-const timezones_specific_pie = document.getElementById('timezones_specific_pie').getContext('2d');
-new Chart(timezones_specific_pie, {
-    type: 'pie',
-    data: {
-        labels: [{{ labels_timezones_specific }}],
-        datasets: [{
-            data: [{{ data_timezones_specific }}],
-            backgroundColor: generateRandomColors([{{ labels_timezones_specific }}].length),
-            borderWidth: 2,
-            borderSkipped: false,
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            title: {
-                display: false,
-            }
-        }
-    }
-});
-
-const username_first_letters_pie = document.getElementById('username_first_letters_pie').getContext('2d');
-new Chart(username_first_letters_pie, {
-    type: 'pie',
-    data: {
-        labels: [{{ labels_username_first_letters }}],
-        datasets: [{
-            data: [{{ data_username_first_letters }}],
-            backgroundColor: generateRandomColors([{{ labels_username_first_letters }}].length),
-            borderWidth: 2,
-            borderSkipped: false,
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            title: {
-                display: false,
-            }
-        }
-    }
-});
-
-const daily_sessions_bar = document.getElementById('daily_sessions_bar').getContext('2d');
-new Chart(daily_sessions_bar, {
-    type: 'bar',
-    data: {
-        labels: [{{ labels_daily_sessions }}],
-        datasets: [{
-            data: [{{ data_daily_sessions }}],
-            backgroundColor: generateRandomColors([{{ labels_daily_sessions }}].length),
-            // borderColor: [
-            //     'rgba(255, 99, 132, 1)',
-            //     'rgba(54, 162, 235, 1)',
-            //     'rgba(255, 206, 86, 1)',
-            //     'rgba(75, 192, 192, 1)',
-            //     'rgba(153, 102, 255, 1)'
-            // ],
-            borderWidth: 2
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            title: {
-                display: false,
-                text: 'Simple Bar Chart'
-            }
+    return new Chart(ctx, {
+        type: type,
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: generateRandomColors(labels.length),
+                borderWidth: 2,
+                borderSkipped: false,
+                label: showLegend ? 'Data' : ''
+            }]
         },
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+        options: options
+    });
+}
 
-const daily_tutorial_bar = document.getElementById('daily_tutorial_bar').getContext('2d');
-new Chart(daily_tutorial_bar, {
-    type: 'bar',
-    data: {
-        labels: [{{ labels_daily_tutorial }}],
-        datasets: [{
-            data: [{{ data_daily_tutorial }}],
-            backgroundColor: generateRandomColors([{{ labels_daily_tutorial }}].length),
-            // borderColor: [
-            //     'rgba(255, 99, 132, 1)',
-            //     'rgba(54, 162, 235, 1)',
-            //     'rgba(255, 206, 86, 1)',
-            //     'rgba(75, 192, 192, 1)',
-            //     'rgba(153, 102, 255, 1)'
-            // ],
-            borderWidth: 2,
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            title: {
-                display: false,
-                text: 'Simple Bar Chart'
+function createChartOnView(canvasId, chartType, labels, data) {
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const canvas = document.getElementById(canvasId);
+                if (chartType === 'bar') {
+                    canvas.width = 800;
+                } else {
+                    canvas.width = 400;
+                }
+                canvas.height = 400;
+                makeChart(canvas.getContext('2d'), chartType, labels, data);
+                observer.unobserve(entry.target);
             }
-        },
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+        });
+    }, { threshold: 0.1 });
 
+    const canvas = document.getElementById(canvasId);
+    observer.observe(canvas);
+}
+
+createChartOnView('finished_ended_early_pie', 'pie', [{{ labels_finished_ended_early }}], [{{ data_finished_ended_early }}]);
+createChartOnView('approved_rejected_pie', 'pie', [{{ labels_approved_rejected }}], [{{ data_approved_rejected }}]);
+createChartOnView('timezone_regions_pie', 'pie', [{{ labels_timezone_regions }}], [{{ data_timezone_regions }}]);
+createChartOnView('timezones_specific_pie', 'pie', [{{ labels_timezones_specific }}], [{{ data_timezones_specific }}]);
+createChartOnView('username_first_letters_pie', 'pie', [{{ labels_username_first_letters }}], [{{ data_username_first_letters }}]);
+createChartOnView('daily_sessions_bar', 'bar', [{{ labels_daily_sessions }}], [{{ data_daily_sessions }}]);
+createChartOnView('daily_tutorial_bar', 'bar', [{{ labels_daily_tutorial }}], [{{ data_daily_tutorial }}]);
 
 function easeOutQuad(t) {
     return t * (2 - t);
@@ -196,7 +88,7 @@ function animateValue(obj, start, end, duration) {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
         const easedProgress = easeOutQuad(progress);
-        obj.innerHTML = Math.floor(easedProgress * (end - start) + start);
+        obj.textContent = Math.floor(easedProgress * (end - start) + start);
         if (progress < 1) {
             window.requestAnimationFrame(step);
         }
@@ -204,8 +96,22 @@ function animateValue(obj, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const obj = entry.target;
+            const targetValue = parseInt(obj.getAttribute('data-target'));
+            animateValue(obj, 0, targetValue, 1500);
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
 const objects = document.getElementsByClassName("increment");
 for (let obj of objects) {
-    const targetValue = parseInt(obj.innerHTML);
-    animateValue(obj, 0, targetValue, 1500);
+    obj.setAttribute('data-target', obj.textContent);
+    obj.textContent = '0';
+    observer.observe(obj);
 }

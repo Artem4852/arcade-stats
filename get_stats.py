@@ -40,7 +40,7 @@ def get_usernames():
             letters[username[0].upper()] += 1
         else:
             letters[username[0].upper()] = 1
-    letters = letters.sorted()
+    letters = {k: letters[k] for k in sorted(letters)}
     return letters
 
 def get_tutorials_daily():
