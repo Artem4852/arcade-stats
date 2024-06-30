@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <title>Arcade Stats</title>
 </head>
 <body>
     <h1>Here are some interesting Arcade statistics</h1>
-    <p>(Important to note, the data is taken from Slack and might not be 100% accurate.)</p>
+    <p>(Important to note, the data is taken from Slack and might not be 100% accurate. The data is as of 2024-06-30).</p>
     <div class="info">
         <h2>Total Users</h2>
-        <h3>There are about <span class="increment">3536</span> people participating in the Arcade project.</h3>
+        <h3>There are about <span class="increment">4935</span> people participating in the Arcade project.</h3>
     </div>
     <div class="info">
         <h2>Total Sessions</h2>
-        <h3>About <span class="increment">20230</span> sessions were started since the launch on 17th of June.</h3>
+        <h3>About <span class="increment">21806</span> sessions were started since the launch on 17th of June.</h3>
     </div>
     <div class="info">
         <h2>Daily Sessions</h2>
-        <h3>Every day, on average 1597.08 sessions were started.</h3>
+        <h3>Every day, on average 1626.62 sessions were started.</h3>
         <canvas id="daily_sessions_bar" width="400" height="400"></canvas>
     </div>
     <div class="info">
         <h2>Finished/Ended early ratio</h2>
-        <h3>77.59% were finished completely, 22.41% were finished early.</h3>
+        <h3>78.15% were finished completely, 21.85% were finished early.</h3>
         <canvas id="finished_ended_early_pie" width="400px" height="400px"></canvas>
     </div>
     <div class="info">
         <h2>Approved/rejected sessions ratio</h2>
-        <h3>84.44% of sessions were finished approved, 15.56% of sessions were rejected. Many others are still awaiting approval.</h3>
+        <h3>84.53% of sessions were finished approved, 15.47% of sessions were rejected. Many others are still awaiting approval.</h3>
         <canvas id="approved_rejected_pie" width="400px" height="400px"></canvas>
     </div>
     <div class="info">
         <h2>Timezone distribution</h2>
-        <h3>Users from all around the world participate. They use 64 timezones from 7 regions.</h3>
+        <h3>Users from all around the world participate. They use 69 timezones from 7 regions.</h3>
         <div>
             <canvas id="timezone_regions_pie" width="400px" height="400px"></canvas>
             <canvas id="timezones_specific_pie" width="400px" height="400px"></canvas>
@@ -43,14 +44,14 @@
     </div>
     <div class="info">
         <h2>Usernames</h2>
-        <h3>About 13.57% of users have a username beginning with the letter A. Here are all the others:</h3>
+        <h3>About 13.66% of users have a username beginning with the letter A. Here are all the others:</h3>
         <canvas id="username_first_letters_pie" width="400px" height="400px"></canvas>
     </div>
     <div class="info">
         <h2>Newcomers</h2>
-        <h3>Every day, on average 123.17 users pass the tutorial.</h3>
+        <h3>Every day, on average 187.62 users pass the tutorial.</h3>
         <canvas id="daily_tutorial_bar" width="400" height="400"></canvas>
     </div>
-    <script src="script.js"></script>
+    <script src="static/js/script.js"></script>
 </body>
 </html>

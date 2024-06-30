@@ -1,5 +1,6 @@
 from get_stats import get_num_users, get_all_sessions, get_sessions_daily, get_processed_sessions, get_tz_distribution, get_usernames, get_tutorials_daily
 import numpy as np
+from datetime import datetime
 
 def replace_variables(filename, variables):
     filename, ext = filename.split(".")
@@ -21,6 +22,7 @@ def replace_variables(filename, variables):
     with open(f"{filename}.{ext}", "w") as f:
         f.write(content)
 
+today = datetime.now().strftime("%Y-%m-%d")
 print("Getting all sessions...")
 sessions_total, sessions_finished, sessions_ended_early = get_all_sessions()
 print("Getting processed sessions...")
@@ -35,6 +37,7 @@ print("Getting daily tutorials...")
 tutorials_daily = get_tutorials_daily()
 
 replace_variables("index.html", {
+    "today": today,
     "total_users": get_num_users(),
     "total_sessions": sessions_total,
     "daily_sessions_average": np.mean([session["total"] for session in sessions_daily]),
