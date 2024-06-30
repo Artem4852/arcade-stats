@@ -38,3 +38,7 @@ Some of the stats I've included are:
 - Timezone distribution of users
 - User naming patterns (Did you know how many usernames start with 'A'?)
 - New user growth
+
+## License
+
+This project is open source and available under the MIT License.
